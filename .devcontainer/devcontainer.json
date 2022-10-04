@@ -1,7 +1,7 @@
 // For format details, see https://aka.ms/devcontainer.json. For config options, see the README at:
 // https://github.com/microsoft/vscode-dev-containers/tree/v0.245.2/containers/python-3
 {
-	"name": "Python 3",
+	"name": "Serverless-SAM",
 	"build": {
 		"dockerfile": "Dockerfile",
 		"context": "..",
@@ -15,6 +15,7 @@
 			"PIP_TRUSTED_HOST": "mirrors.aliyun.com"
 		}
 	},
+	"runArgs": ["--env-file", ".devcontainer/devcontainer.env"],
 
 	// Configure tool-specific properties.
 	"customizations": {
@@ -38,6 +39,9 @@
 
 			// Add the IDs of extensions you want installed when the container is created.
 			"extensions": [
+				"k--kato.intellij-idea-keybindings",
+				"rangav.vscode-thunder-client",
+				"apollographql.vscode-apollo",
 				// "vscjava.vscode-java-pack",
 				"ms-python.python",
 				"ms-python.vscode-pylance"
@@ -50,6 +54,7 @@
 
 	// Use 'postCreateCommand' to run commands after the container is created.
 	// "postCreateCommand": "pip3 install --user -r requirements.txt",
+	"postCreateCommand": "echo \"${AWS_CFG}\"|base64 -d > ~/.aws/config && echo \"${AWS_CREDENTIALS}\"|base64 -d > ~/.aws/credentials",
 
 	// Comment out to connect as root instead. More info: https://aka.ms/vscode-remote/containers/non-root.
 	"remoteUser": "vscode",
@@ -58,7 +63,7 @@
 		// "maven": "latest",
 		// "gradle": "latest",
 		// "ruby": "latest",
+		// "homebrew": "latest",
 		"aws-cli": "latest"
-		// "homebrew": "latest"
 	}
 }

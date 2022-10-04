@@ -26,3 +26,8 @@ RUN if [ "${PIP_TRUSTED_HOST}" != "none" ]; then su vscode -c "pip config set gl
 # RUN su vscode -c "source /usr/local/share/nvm/nvm.sh && npm install -g <your-package-here>" 2>&1
 
 RUN su vscode -c "pip install aws-sam-cli"
+
+# AWS config & credentials
+RUN su vscode -c "mkdir -m 700 ~/.aws"
+# RUN su vscode -c 'echo "${AWS_CFG}" |base64 -d > ~/.aws/config'
+# RUN su vscode -c 'echo "${AWS_CREDENTIALS}" |base64 -d > ~/.aws/credentials'
